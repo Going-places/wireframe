@@ -56,50 +56,50 @@
       <div class="row">
       	<div class="col-md-3"></div>
         <div class="col-md-1">
-          <div id="slider-vertical" style="height:200px;"></div>
-          <p><input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;"></p>
+          <div class="slider-vertical" id="beachSlider" style="height:200px;"></div>
+          <p><input type="text" id="beachScore" style="border:0; color:#f6931f; font-weight:bold;"></p>
         </div>
         <div class="col-md-1">
-          <div id="slider-vertical" style="height:200px;"></div>
-          <p><input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;"></p>
+          <div class="slider-vertical" id="mountainSlider" style="height:200px;"></div>
+          <p><input type="text" id="mountainScore" style="border:0; color:#f6931f; font-weight:bold;"></p>
         </div>
         <div class="col-md-1">
-          <div id="slider-vertical" style="height:200px;"></div>
-          <p><input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;"></p>
+          <div class="slider-vertical" id="partySlider" style="height:200px;"></div>
+          <p><input type="text" id="partyScore" style="border:0; color:#f6931f; font-weight:bold;"></p>
         </div>
         <div class="col-md-1">
-          <div id="slider-vertical" style="height:200px;"></div>
-          <p><input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;"></p>
+          <div class="slider-vertical" id="wildlifeSlider" style="height:200px;"></div>
+          <p><input type="text" id="wildlifeScore" style="border:0; color:#f6931f; font-weight:bold;"></p>
         </div>
         <div class="col-md-1">
-          <div id="slider-vertical" style="height:200px;"></div>
-          <p><input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;"></p>
+          <div class="slider-vertical" id="adventureSlider" style="height:200px;"></div>
+          <p><input type="text" id="adventureScore" style="border:0; color:#f6931f; font-weight:bold;"></p>
         </div>
         <div class="col-md-1">
-          <div id="slider-vertical" style="height:200px;"></div>
-          <p><input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;"></p>
+          <div class="slider-vertical" id="quietSlider" style="height:200px;"></div>
+          <p><input type="text" id="quietScore" style="border:0; color:#f6931f; font-weight:bold;"></p>
         </div>
         <div class="col-md-3"></div>
       </div>
       <div class="row">
       	<div class="col-md-3"></div>
         <div class="col-md-1">
-		  <p><label for="amount" >Beach</label></p>
+		  <p><label for="beachScore" >Beach</label></p>
         </div>
         <div class="col-md-1">
-          <p><label for="amount" >Mountains</label></p>
+          <p><label for="mountainScore" >Mountains</label></p>
         </div>
         <div class="col-md-1">
-          <p><label for="amount" >Adventure</label></p>
+          <p><label for="partyScore" >Party</label></p>
         </div>
         <div class="col-md-1">
-          <p><label for="amount" >Wildlife</label></p>
+          <p><label for="wildlifeScore" >Wildlife</label></p>
         </div>
         <div class="col-md-1">
-          <p><label for="amount" >Party</label></p>
+          <p><label for="adventureScore" >Adventure</label></p>
         </div>
         <div class="col-md-1">
-          <p><label for="amount" >Quiet</label></p>
+          <p><label for="quietScore" >Quiet</label></p>
         </div>
         <div class="col-md-3"></div>
       </div>
@@ -144,17 +144,20 @@
     <script src="js/bootstrap.min.js"></script>
     <script>
 	  $(function() {
-	    $( "#slider-vertical" ).slider({
-	      orientation: "vertical",
-	      range: "min",
-	      min: 0,
-	      max: 10,
-	      value: 5,
-	      slide: function( event, ui ) {
-	        $( "#amount" ).val( ui.value );
-	      }
-	    });
-	    $( "#amount" ).val( $( "#slider-vertical" ).slider( "value" ) );
+	  	$( ".slider-vertical" ).each(function(idx, elm) {
+	  		var boxId = elm.id.replace('Slider', 'Score');
+	  		$("#" + elm.id).slider({
+		      orientation: "vertical",
+		      range: "min",
+		      min: -5,
+		      max: +5,
+		      value: 0,
+		      slide: function( event, ui ) {
+		        $( "#" + boxId ).val( ui.value );
+		      }
+		    });
+		    $( "#" + boxId ).val( $( "#" + elm.id ).slider( "value" ) );
+		});
 	  });
   	</script>
   </body>
